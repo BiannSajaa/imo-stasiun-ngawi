@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Enums\Jabatan;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -25,9 +26,13 @@ class UserFactory extends Factory
     {
         return [
             'name' => fake()->name(),
+            'nip' => fake()->unique()->numerify('##########'),
+            'jabatan' => fake()->randomElement([Jabatan::Pjl->value, Jabatan::Ppka->value]),
+            'username' => fake()->unique()->userName(),
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
+            'is_active' => true,
             'remember_token' => Str::random(10),
         ];
     }
