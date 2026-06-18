@@ -16,7 +16,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route(
+        auth()->check()
+            ? 'filament.admin.pages.dashboard'
+            : 'filament.admin.auth.login',
+    );
 });
 
 Route::get('/dashboard', function () {
