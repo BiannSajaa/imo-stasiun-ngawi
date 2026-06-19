@@ -104,11 +104,7 @@ class LaporanBulanan extends Page implements HasForms
             Action::make('cetakPdf')
                 ->label('Cetak PDF')
                 ->icon('heroicon-o-printer')
-                ->url(fn (): string => route('reports.monthly.pdf', [
-                    'bulan' => $this->bulan,
-                    'tahun' => $this->tahun,
-                    'jabatan' => $this->jabatan,
-                ]))
+                ->url(fn (): string => route('reports.monthly.pdf', $this->reportFilters()))
                 ->openUrlInNewTab(),
         ];
     }
@@ -144,5 +140,17 @@ class LaporanBulanan extends Page implements HasForms
             ->reverse()
             ->mapWithKeys(fn (int $year): array => [$year => $year])
             ->all();
+    }
+
+    /**
+     * @return array{bulan: int, tahun: int, jabatan: ?string}
+     */
+    private function reportFilters(): array
+    {
+        return [
+            'bulan' => $this->bulan ?: now()->month,
+            'tahun' => $this->tahun ?: now()->year,
+            'jabatan' => $this->jabatan,
+        ];
     }
 }

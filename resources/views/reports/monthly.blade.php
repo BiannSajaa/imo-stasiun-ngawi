@@ -55,7 +55,7 @@
     <div class="header">
         <h1>Integrated Monitoring Operation</h1>
         <h2>Stasiun Ngawi</h2>
-        <p>Laporan Bulanan {{ now()->month($month)->translatedFormat('F') }} {{ $year }}</p>
+        <p>Laporan Bulanan {{ \Carbon\Carbon::createFromDate($year, $month, 1)->translatedFormat('F') }} {{ $year }}</p>
     </div>
 
     <table class="meta">
