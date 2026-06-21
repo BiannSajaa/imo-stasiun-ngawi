@@ -102,8 +102,8 @@ class LaporanBulanan extends Page implements HasForms
     {
         return [
             Action::make('cetakPdf')
-                ->label('Cetak PDF')
-                ->icon('heroicon-o-printer')
+                ->label('Download PDF')
+                ->icon('heroicon-o-arrow-down-tray')
                 ->url(fn (): string => route('reports.monthly.pdf', $this->reportFilters()))
                 ->openUrlInNewTab(),
         ];
