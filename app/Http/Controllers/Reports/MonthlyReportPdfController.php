@@ -54,7 +54,7 @@ class MonthlyReportPdfController extends Controller
         $upload = $row['upload'];
         $documents = $upload?->dokumentasi ?? collect();
 
-        $row['file_pdf_name'] = $upload?->file_pdf ? basename($upload->file_pdf) : null;
+        $row['serah_terima_name'] = $upload?->file_pdf ? basename($upload->file_pdf) : null;
         $row['serah_terima_image'] = $upload?->file_pdf ? $this->storageImageDataUri($upload->file_pdf) : null;
         $row['kegiatan'] = trim('Dinasan '.($row['user']->jabatan ?: ''));
         $row['dokumentasi_images'] = $documents

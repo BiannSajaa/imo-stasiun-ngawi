@@ -328,9 +328,9 @@
                             <div class="document-preview">
                                 @if ($row['serah_terima_image'])
                                     <img src="{{ $row['serah_terima_image'] }}" alt="Gambar Serah Terima">
-                                @elseif ($row['file_pdf_name'])
+                                @elseif ($row['serah_terima_name'])
                                     <div class="label">GAMBAR SERAH TERIMA</div>
-                                    <div class="file-name">{{ $row['file_pdf_name'] }}</div>
+                                    <div class="file-name">{{ $row['serah_terima_name'] }}</div>
                                 @else
                                     <div class="empty">BELUM ADA FILE</div>
                                 @endif
@@ -342,7 +342,7 @@
                                 </tr>
                                 <tr>
                                     <td class="key">Gambar</td>
-                                    <td>: {{ $row['file_pdf_name'] ?: '-' }}</td>
+                                    <td>: {{ $row['serah_terima_name'] ?: '-' }}</td>
                                 </tr>
                             </table>
                         </div>
