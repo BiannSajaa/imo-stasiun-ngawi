@@ -5,7 +5,7 @@
     <title>Laporan Bulanan IMO</title>
     <style>
         @page {
-            margin: 8mm;
+            margin: 4mm;
         }
 
         * {
@@ -30,16 +30,18 @@
 
         .sheet {
             border: 1px solid #d6d9de;
-            height: 194mm;
-            padding: 6mm;
+            height: auto;
+            overflow: hidden;
+            padding: 3mm;
+            page-break-inside: avoid;
             position: relative;
-            width: 281mm;
+            width: 100%;
         }
 
         .logos {
             border-bottom: 1px solid #d6d9de;
-            margin-bottom: 3mm;
-            padding-bottom: 3mm;
+            margin-bottom: 2mm;
+            padding-bottom: 2mm;
             width: 100%;
         }
 
@@ -107,7 +109,7 @@
 
         .side-table {
             border-collapse: collapse;
-            height: 162mm;
+            height: 150mm;
             width: 100%;
         }
 
@@ -149,20 +151,20 @@
         }
 
         .document-panel {
-            height: 153mm;
-            padding: 4mm;
+            height: 142mm;
+            padding: 3mm;
         }
 
         .document-preview {
             background: #f8fafc;
             border: 1px solid #bfc5ce;
-            height: 124mm;
-            padding: 7mm 6mm;
+            height: 112mm;
+            padding: 5mm;
             text-align: center;
         }
 
         .document-preview img {
-            height: 110mm;
+            height: 102mm;
             max-width: 100%;
         }
 
@@ -170,7 +172,7 @@
             color: #2c276e;
             font-size: 20px;
             font-weight: 800;
-            margin-top: 32mm;
+            margin-top: 26mm;
         }
 
         .document-preview .file-name {
@@ -184,7 +186,7 @@
             color: #9ca3af;
             font-size: 15px;
             font-weight: 700;
-            margin-top: 38mm;
+            margin-top: 32mm;
         }
 
         .document-info {
@@ -204,13 +206,13 @@
         }
 
         .photo-panel {
-            height: 153mm;
-            padding: 4mm;
+            height: 142mm;
+            padding: 3mm;
         }
 
         .photo-grid {
             border-collapse: collapse;
-            height: 145mm;
+            height: 134mm;
             table-layout: fixed;
             width: 100%;
         }
@@ -218,7 +220,7 @@
         .photo-grid td {
             background: #f8fafc;
             border: 2mm solid #ffffff;
-            height: 72.5mm;
+            height: 67mm;
             overflow: hidden;
             position: relative;
             text-align: center;
@@ -226,7 +228,7 @@
         }
 
         .photo-grid img {
-            height: 68mm;
+            height: 63mm;
             width: 100%;
         }
 
@@ -237,12 +239,9 @@
         }
 
         .summary-footer {
-            bottom: 2mm;
             color: #6b7280;
             font-size: 8px;
-            left: 6mm;
-            position: absolute;
-            right: 6mm;
+            margin-top: 1mm;
         }
 
         .summary-footer table {
