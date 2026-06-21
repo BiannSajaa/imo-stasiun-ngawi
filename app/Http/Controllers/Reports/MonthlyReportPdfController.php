@@ -27,6 +27,7 @@ class MonthlyReportPdfController extends Controller
         $jabatan = $validated['jabatan'] ?? null;
 
         $rows = $reportService->monthlyRows($month, $year, $jabatan)
+            ->filter(fn (array $row): bool => $row['upload'] !== null)
             ->map(fn (array $row): array => $this->prepareReportRow($row))
             ->values();
         $generatedAt = now('Asia/Jakarta');
@@ -54,7 +55,7 @@ class MonthlyReportPdfController extends Controller
         $documents = $upload?->dokumentasi ?? collect();
 
         $row['file_pdf_name'] = $upload?->file_pdf ? basename($upload->file_pdf) : null;
-        $row['file_pdf_url'] = $upload?->file_pdf ? Storage::disk('public')->url($upload->file_pdf) : null;
+        $row['serah_terima_image'] = $upload?->file_pdf ? $this->storageImageDataUri($upload->file_pdf) : null;
         $row['kegiatan'] = trim('Dinasan '.($row['user']->jabatan ?: ''));
         $row['dokumentasi_images'] = $documents
             ->take(4)

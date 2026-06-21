@@ -161,6 +161,11 @@
             text-align: center;
         }
 
+        .document-preview img {
+            height: 110mm;
+            max-width: 100%;
+        }
+
         .document-preview .label {
             color: #2c276e;
             font-size: 20px;
@@ -321,8 +326,10 @@
                         <div class="section-title">SERAH TERIMA DINASAN</div>
                         <div class="document-panel">
                             <div class="document-preview">
-                                @if ($row['file_pdf_name'])
-                                    <div class="label">PDF SERAH TERIMA</div>
+                                @if ($row['serah_terima_image'])
+                                    <img src="{{ $row['serah_terima_image'] }}" alt="Gambar Serah Terima">
+                                @elseif ($row['file_pdf_name'])
+                                    <div class="label">GAMBAR SERAH TERIMA</div>
                                     <div class="file-name">{{ $row['file_pdf_name'] }}</div>
                                 @else
                                     <div class="empty">BELUM ADA FILE</div>
@@ -334,7 +341,7 @@
                                     <td>: {{ $row['tanggal_upload']?->format('d M Y H:i') ?: '-' }}</td>
                                 </tr>
                                 <tr>
-                                    <td class="key">File PDF</td>
+                                    <td class="key">Gambar</td>
                                     <td>: {{ $row['file_pdf_name'] ?: '-' }}</td>
                                 </tr>
                             </table>
@@ -388,7 +395,7 @@
             </table>
 
             <div class="document-preview">
-                <div class="empty">TIDAK ADA DATA PADA FILTER INI</div>
+                <div class="empty">BELUM ADA DATA UPLOAD PADA FILTER INI</div>
                 <div class="file-name">{{ $period }} - {{ $filterLabel }}</div>
             </div>
         </div>

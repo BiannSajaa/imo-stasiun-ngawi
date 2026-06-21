@@ -16,7 +16,6 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Storage;
 
 class DinasanUploadResource extends Resource
 {
@@ -64,12 +63,13 @@ class DinasanUploadResource extends Resource
                                 modifyRuleUsing: fn ($rule, Forms\Get $get) => $rule->where('user_id', $get('user_id') ?: auth()->id())
                             ),
                         Forms\Components\FileUpload::make('file_pdf')
-                            ->label('File Serah Terima')
-                            ->acceptedFileTypes(['application/pdf'])
-                            ->maxSize(10240)
+                            ->label('Gambar Serah Terima')
+                            ->image()
+                            ->acceptedFileTypes(['image/jpeg', 'image/jpg', 'image/png'])
+                            ->maxSize(5120)
                             ->directory('serah-terima')
                             ->disk('public')
-                            ->downloadable()
+                            ->imagePreviewHeight('240')
                             ->openable()
                             ->columnSpanFull(),
                         Forms\Components\Select::make('status')
@@ -202,10 +202,10 @@ class DinasanUploadResource extends Resource
                             ->date('d M Y'),
                         Infolists\Components\TextEntry::make('tanggal_upload')
                             ->dateTime('d M Y H:i'),
-                        Infolists\Components\TextEntry::make('file_pdf')
-                            ->label('File Serah Terima')
-                            ->formatStateUsing(fn (?string $state): string => $state ? 'Lihat PDF' : '-')
-                            ->url(fn (DinasanUpload $record): ?string => $record->file_pdf ? Storage::disk('public')->url($record->file_pdf) : null, true),
+                        Infolists\Components\ImageEntry::make('file_pdf')
+                            ->label('Gambar Serah Terima')
+                            ->disk('public')
+                            ->height(240),
                     ]),
                 Infolists\Components\Section::make('Dokumentasi')
                     ->schema([
